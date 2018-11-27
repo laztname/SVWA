@@ -15,10 +15,26 @@ if (isset($_POST['signin'])) {
     $pass = $_POST['password'];
     $pass = md5($pass);
 
+    /* Start Patch Bypass SQLi, remove this line to patch
+
+    $stmt_login = mysqli_prepare($conn, "SELECT * from `m_user` WHERE `username`= ? and `password`= ?");
+    mysqli_stmt_bind_param($stmt_login, "ss", $user, $pass);
+    mysqli_stmt_execute($stmt_login);
+    $count = mysqli_stmt_fetch($stmt_login);
+
+    //don't forget to comment vulnerable Bypass SQLi section
+
+    End Patch Bypass SQLi, remove this line to patch */
+
+    // Start Vulnerable Bypass SQLi 
+    // /*
     $sql = "SELECT * from `m_user` WHERE `username`= '$user' and `password`= '$pass'";
 
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $count = mysqli_num_rows($result);
+    // */
+    // End Vulnerable Bypass SQLi
+
     if ($count >= 1) {
       $_SESSION['username'] = $user;
       header('Location: index.php');
@@ -32,12 +48,17 @@ if (isset($_POST['signup'])) {
     $pass = $_POST['password'];
     $pass = md5($pass);
     
+
     $sql = "SELECT * from `m_user` WHERE `username`= '$user' and `password`= '$pass'";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $count = mysqli_num_rows($result);
+
     if ($count < 1) {
+
+
       $sql = "INSERT INTO `m_user` (`id`, `username`, `password`) VALUES ('', '$user', '$pass')";
       $insert = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+      
       if ($insert) {
           echo "<script>alert('user successfully added')</script>";
       }

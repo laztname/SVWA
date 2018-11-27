@@ -24,8 +24,30 @@ if (isset($_POST['submit'])) {
     }
 }
 
+/* Start Vulnerable IDOR
+
 $sql = mysqli_query($conn, "SELECT * FROM m_post WHERE id_post = ".$_GET['id']."");
-while($row = mysqli_fetch_array($sql)){
+$row = mysqli_fetch_array($sql);
+
+End Vulnerable IDOR */
+
+
+// /* Start Patch IDOR
+
+
+$sql = mysqli_query($conn, "Select * FROM m_post WHERE id_post = ".$_GET['id']."");
+$row = mysqli_fetch_array($sql);
+
+if($_SESSION['username'] != $row['user']){
+  echo "<script>alert('Unauthorized')</script>";
+  echo "<meta http-equiv='refresh' content='0;index.php'>";
+  exit();
+}
+
+// End Patch IDOR */
+
+
+
 ?>
     <!-- Portfolio Grid Section -->
     <section class="portfolio" id="portfolio">
@@ -39,5 +61,5 @@ while($row = mysqli_fetch_array($sql)){
       </div>
     </section>
 <?php
-}
+
 ?>

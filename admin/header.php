@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>My Vuln Web - Administrator</title>
+    <title>SVWA</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href=".">My Vuln Web</a>
+        <a class="navbar-brand js-scroll-trigger" href="http://localhost/svwa">SVWA (SHL Vulnerable Web App)</a>
         <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
@@ -82,9 +82,9 @@
         $sql = mysqli_query($conn, "SELECT profile FROM m_user WHERE username = '$username'");
         $row = mysqli_fetch_array($sql);
         if ($row['profile'] == NULL) {
-          echo "<img class=\"img-fluid mb-5 d-block mx-auto\" src=\"../assets/img/profile.png\" alt=\"\">";
+          echo "<img class='img-fluid mb-5 d-block mx-auto' src='../assets/img/profile.png' style='width:250px;height:200px' >";
         } else {
-          echo "<img class=\"img-fluid mb-5 d-block mx-auto\" src=\"../assets/img/".$row['profile']."\" alt=\"\">";
+          echo "<img class=\"img-fluid mb-5 d-block mx-auto\" src=\"../assets/img/".$row['profile']."\" width='256' height='256'>";
         }
         
         if ($_SESSION['username']) {
@@ -93,7 +93,7 @@
         <input class=\"btn btn-primary\" type=\"submit\" value=\"Change Profile Pictures\"></form>";
         }
         ?>
-        <h1 class="text-uppercase mb-0">Wellcome <?php echo $_SESSION['username'];?></h1>
+        <h1 class="text-uppercase mb-0">H3llcome <?php echo $_SESSION['username'];?></h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">Howdy are you?, what we'll do today?</h2>
       </div>
