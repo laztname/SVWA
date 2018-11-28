@@ -1,6 +1,10 @@
 <?php
 session_start();
 require '../db/koneksi.php';
+
+//var_dump($_FILES['file']);
+//exit();
+
 if (isset($_GET['logout'])) {
 	session_destroy();
 	header('Location: login.php');
@@ -21,10 +25,31 @@ if (isset($_GET['delete'])) {
 	}
 }
 error_reporting(E_ERROR | E_PARSE);
-if ($_POST['file'] = "upload") {
+if (isset($_FILES['file'])) {
 	$dir = "../assets/img/";
+
 	$name = basename($_FILES["file"]["name"]);
-    $tmp_name = $_FILES["file"]["tmp_name"];
+	
+	/* Start Patched File Upload
+
+	$original_name = basename($_FILES["file"]["name"]);
+	$allowed_ext = ['jpg', 'png', 'bmp', 'jpeg', 'JPEG', 'PNG'];
+	$ext = end(explode('.', $original_name));
+
+
+	
+	if(!in_array($ext, $allowed_ext)){
+		echo "<script>alert('Only image')</script><meta http-equiv='refresh' content='0;index.php'>";
+		//header("Location: index.php");
+		exit();
+	}
+	
+
+	$name = $original_name;
+
+	End Patched File Upload */
+	
+	$tmp_name = $_FILES["file"]["tmp_name"];
 
 	if (move_uploaded_file($tmp_name, "$dir/$name")) {
 	$username = $_SESSION['username'];

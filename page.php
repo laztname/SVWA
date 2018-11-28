@@ -3,7 +3,14 @@
       <div class="container">
         <?php
         if (isset($_GET['s'])) {
+          
             echo "<h2 class=\"text-center text-uppercase text-secondary mb-0\">Found Result For ".$_GET['s']."</h2><br><hr>";
+
+            /* Start Patch XSS Search
+
+            echo "<h2 class=\"text-center text-uppercase text-secondary mb-0\">Found Result For ".htmlspecialchars(filter_var($_GET['s']))."</h2><br><hr>";
+            
+            End Patch XSS */
         } else {
             echo "<h2 class=\"text-center text-uppercase text-secondary mb-0\">List Article</h2><br><hr>";
         }
@@ -25,7 +32,7 @@
                       if ($sql) {
                           while ($row = mysqli_fetch_array($sql)) {
                           echo "
-                          <tr onclick=\"window.location='read.php?id=".$row['id_post']."';\">
+                          <tr>
                               <td>".$row['id_post']."</td>
                               <td>".$row['post_title']."</td>
                               <td>".$row['user']."</td>
@@ -38,7 +45,7 @@
                           echo "
                           <tr onclick=\"window.location='read.php?id=".$row['id_post']."';\">
                               <td>".$row['id_post']."</td>
-                              <td>".$row['post_title']."</td>
+                              <td><a href='read.php?id=".$row['id_post']."'>".$row['post_title']."</a></td>
                               <td>".$row['user']."</td>
                           </tr>";
                       }

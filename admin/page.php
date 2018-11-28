@@ -37,14 +37,14 @@ require '../db/koneksi.php';
           if ($_SESSION['username'] == $rowp['user']) {
               echo "<td><a href=\"?file=edit.php&id=".$rowp['id_post']."\">Edit</a></td>";
           } else {
-              echo "<td><a href=\"#\">Edit</a></td>";
+              echo "<td>X</td>";
           }
           ?>
           <?php
           if ($_SESSION['username'] == $rowp['user']) {
               echo "<td><a href=\"?delete=".$rowp['id_post']."\">Delete</a></td>";
           } else {
-              echo "<td><a href=\"#\">Delete</a></td>";
+              echo "<td>X</td>";
           }
 
 
