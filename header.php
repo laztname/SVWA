@@ -47,7 +47,7 @@
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
             </li>
-            <?php if($_SESSION['username']){ ?>
+            <?php if(isset($_SESSION['username'])){ ?>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="admin">Admin</a>
             </li>
@@ -55,7 +55,7 @@
 
             <li class="nav-item mx-0 mx-lg-1">
               <?php error_reporting(E_ERROR | E_PARSE);
-              if ($_SESSION['username']) {
+              if (isset($_SESSION['username'])) {
                 echo "<a class=\"nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger\" href=\"?logout\">Logout</a>";
               } else {
                 echo "<a class=\"nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger\" href=\"admin\">Login</a>";
